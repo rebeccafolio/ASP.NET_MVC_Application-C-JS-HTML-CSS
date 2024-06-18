@@ -1,0 +1,147 @@
+﻿
+<2021.12.11.0>
+Changes by: Rebecca Gilliam
+Release Notes: 
+    Update Items For Purchase Orders 
+        Expected Behavior - Click on the badge on list of purchase orders will take the user to
+            a page containing a list of items, quantity in the order, and the cost. The user will
+            then will be able to update the quanity until the quantity column and on change will 
+            save.            
+        Created Additional Files under PurchaseOrders:
+            POItem.cshtml - Table to list all items available and those included in the order and
+                their quantity displayed at the top of the list. Added javascript to grab new 
+                quantity and id numbers on the change event to update the order. 
+            _POItem.cshtml - referenced in the javascript code on the POItem.cshtml
+        Modified/Added code to existing files: 
+            ITP245-Model.Ineventory.cs - code to list all items on POItem.cshtml 
+            PurchaseOrdersController.cs - code to update the order and create page for the order
+            PurchaseOrders.Index.cs - Added badge links to POItem.
+            PurchaseOrders.Edit.cs - Added link to update the items of the order. 
+    Images - added to the Items Index, Details, & Edit for Items. 
+Work In Progess:
+    Vendor Details - Links to Purchase Orders
+        Current code is commented out under Vendor Details 
+
+
+**********************************************************************************************************************************
+**********************************************************************************************************************************
+
+<2021.11.29.0>
+Changes by: Rebecca Gilliam
+Release Notes: 
+    Email Vendor Solution Released 
+        DataType Changes: 
+            Removed setting Datatype Email for Email Address on Vendor Index page.
+        Created an Interface called IEmail:
+            Located in the ITP245-Model/Inventory and inherited by Vendor. 
+            Referenced by ITP245-2021-Fall/HtmlHelpers/HtmlExtensions
+        HtmlHelper Created in HtmlExtensions: 
+            Created MailTo Helper called Email with class id Email
+            Expected Behavior - When user clicks email address on the Vendor Index and Vendor Details pages
+                local email software will popup with a new email with the To set to the Vendor's email address
+                and the email subject will contain the name of the Vendor's Contact.
+        Created JS file called EmailVendorScript
+            On the mouse over this will change the text to purple  (located in Site.css) and to Email Vendor Contact.
+        Deployed to Vendor Details page and the Vendor Index page. 
+    Links to other pages to improve the userability. 
+        Items Index - added link to Category Details page
+        Category Details - added links to Item Details page 
+        Items Details - Link to Category Details page
+        Spoilage Index - Link to Item Details
+        Spoilage Detail - Link to Item Details
+        Purchase Order Index - Link to Vendor 
+        Purchase Order Deatils - Link to Vendor 
+Work In Progess:
+    Vendor Details - Links to Purchase Orders
+        Current code is commented out under Vendor Details 
+
+
+**********************************************************************************************************************************
+**********************************************************************************************************************************
+
+<2021.11.15.0>
+Changes by: Rebecca Gilliam
+Release Notes: 
+    Decrease Maintanance by:
+        Created _Edit for all Create & Edit pages.
+        Created _Index for Items & Purcase Orders 
+    Style Changes:
+        Changed Bootstrap applied.
+        Added Badges for Edit, Details, & Delete pages
+        Change color of Delete buttons & badges to Red
+        Modified Color of all Save buttons to yellow
+        Modified Buttons size to small
+    Removed the following:
+        Item Index - Removed the location of item & description
+    Added the following: 
+        Spoilage - Enum for Reason Type
+        Purchase Order Index, Details, Edit, & Delete
+            Added the PurchaseOrderId
+        Item, Category, Spoilage, Vendor -
+            Added Id #
+    DataType Changes - 
+        PurchaseOrder - 
+            PoDate set to Date
+            Amount set to Currency
+        Vendor -
+            ZipCode set to Zip Code
+            PhoneNumber set to Phone Number 
+            Email set to Email Address
+        Spoilage - 
+            SpoilageDate set to Date
+            Value set to Currency
+        Item - 
+            RetailPrice set to Currency
+            StandardCost set to Currency            
+    In the Model project changed the display name for:
+        PurchaseOrder - 
+            PoDate to Purchase Date
+            PurchaseOrderNumber to Purchase Order #
+            Amount to Total Amount
+        Vendor -
+            Name to Vendor Name
+            ZipCode to Zip Code
+            PhoneNumber to Phone Number 
+            Address1  to Address 1
+            Address2 to Address 2
+            VendorId to Vendor 
+            Email to Email Address
+        Spoilage - 
+            SpoilageDate to Date
+            ReasonType to Reason
+            SpoilageId to Spoilage
+            Value to Cost
+        Category -
+            Name to Category
+            CategoryId to Category Name
+        Item - 
+            QuantityOnHand to Quantity in Stock
+            RetailPrice to Retail Price
+            StandardCost to Standard Cost
+            ImageLocation to Location of Image
+            Name to Name of Item
+            ItemId to Item
+    Work In Progress:
+        Creating an Interface called Email
+            Purpose: mail to property on the Vendor Index & Details pages 
+                to email vendor and generate the subject line.
+
+
+**********************************************************************************************************************************
+**********************************************************************************************************************************
+
+<2021.11.02.0>
+    Added filter by Category and Search by Name for Items.
+    Added filter by State for Vendors
+
+
+
+
+    
+
+
+                       
+           
+
+
+

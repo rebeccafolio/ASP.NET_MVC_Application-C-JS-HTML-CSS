@@ -1,0 +1,22 @@
+﻿@model ITP245_Model.Item
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Inventory/Views/Shared/_Inventory.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "Items", FormMethod.Post, new { enctype = "Multipart/form-data" })) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    
+    @Html.Partial("_Edit", Model)
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

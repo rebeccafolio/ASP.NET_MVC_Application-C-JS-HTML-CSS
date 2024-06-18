@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ITP245_Model.Item>
+
+@{
+    ViewBag.Title = "Items";
+    Layout = "~/Areas/Inventory/Views/Shared/_Admin.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Add New Item", "Create", null, null, new { @class = "btn btn-primary btn-sm" })
+    &nbsp;&nbsp;&nbsp;<label class="filter">Category</label>&nbsp;&nbsp;&nbsp;
+    @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "filter", @onchange = "FillByCategory()" })
+    &nbsp;&nbsp;&nbsp;<label class="filter">Search by Name</label>&nbsp;&nbsp;&nbsp;
+    @Html.TextArea("Search", null, htmlAttributes: new { @class = "filter", @onchange = "FilterByName()" })
+</p>
+
+<div id="itemContainer">
+    @Html.Partial("_Index", Model)
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function FillByCategory() {
+            var categoryId = $('#CategoryId').val();
+            var container = $('#itemContainer');
+            container.load('@Url.Action("_IndexByCategory")?id=' + categoryId)
+        }
+
+        function FilterByName() {
+            var parm = $('#Search').val();
+            var container = $('#itemContainer');
+            container.load('@Url.Action("_IndexByName")?parm=' + parm);
+        }
+
+    </script>
+    }

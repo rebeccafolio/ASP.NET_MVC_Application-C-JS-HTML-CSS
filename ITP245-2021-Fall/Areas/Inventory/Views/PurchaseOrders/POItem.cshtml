@@ -1,0 +1,62 @@
+﻿@model ITP245_Model.PurchaseOrder
+
+@{
+    ViewBag.Title = "Update Order";
+    Layout = "~/Areas/Inventory/Views/Shared/_Inventory.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@Html.HiddenFor(model => model.PurchaseOrderNumber)
+
+
+<div>
+    <h2>Items for #@Model.PurchaseOrderNumber</h2>
+    <div id="poitemContainer"></div>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Cost Per Item</th>
+        </tr>
+        @foreach (var poitem in Model.PoItems)
+        {
+            <tr>
+                <td>
+                    @poitem.Item.Name
+                </td>
+                <td>                   
+                    @Html.TextBox(String.Format("POItem|{0}", poitem.ItemId), poitem.Quantity, new { id = String.Format("POItem|{0}", poitem.ItemId), onchange = String.Format("changePOItem({0})", poitem.ItemId) })
+                </td>
+                <td>
+                    @poitem.Price
+                </td>
+            </tr>
+        }
+
+
+    </table>
+
+</div>
+
+
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PurchaseOrderNumber }) |
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+       function changePOItem(itemId) {
+           var purchaseordernumber = $('#PurchaseOrderNumber').val();
+           var poitemId = 'POItem|' + itemId;
+           var poitem = document.getElementById(poitemId);
+           var qty = poitem.OrderItem;
+           var parm = itemId + '|' + purchaseordernumber + '|' + qty;
+           var container = $('#poitemContainer')
+           container.load('@Url.Action("_POItem", "Items")?parm=' + parm);
+       }
+    </script>
+
+}

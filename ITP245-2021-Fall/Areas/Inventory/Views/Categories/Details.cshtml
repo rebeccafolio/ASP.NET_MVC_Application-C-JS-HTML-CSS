@@ -1,0 +1,43 @@
+﻿@model ITP245_Model.Category
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Inventory/Views/Shared/_Inventory.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryId) #@Html.DisplayFor(model => model.CategoryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            Category @Model.Name Items
+        </div>
+    </div>
+
+    @foreach (var item in Model.Items)
+    {
+        <div class="row">
+            <div class="col-lg-12">
+                @Html.ActionLink(@item.Name, "Details", "Items", new { id = item.ItemId }, null)
+            </div>
+        </div>
+
+    }
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CategoryId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

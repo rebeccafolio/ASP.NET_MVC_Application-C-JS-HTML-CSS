@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ITP245_Model.Category>
+
+@{
+    ViewBag.Title = "Category";
+    Layout = "~/Areas/Inventory/Views/Shared/_Admin.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Add New Category", "Create", null, null, new { @class = "btn btn-primary btn-sm" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CategoryId }, new { @class = "badge bg-primary" } ) 
+            @Html.ActionLink("Details", "Details", new { id=item.CategoryId }, new { @class = "badge bg-success" }) 
+            @Html.ActionLink("Delete", "Delete", new { id=item.CategoryId }, new { @class = "badge bg-danger" })
+        </td>
+    </tr>
+}
+
+</table>

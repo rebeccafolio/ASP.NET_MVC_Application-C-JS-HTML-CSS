@@ -1,0 +1,25 @@
+﻿@model ITP245_Model.PurchaseOrder
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Inventory/Views/Shared/_Inventory.cshtml";
+}
+
+<h2>Edit</h2>
+<h4>@Html.DisplayNameFor(model => model.PurchaseOrderNumber)@Html.DisplayFor(model => model.PurchaseOrderNumber)</h4>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.HiddenFor(model => model.PurchaseOrderNumber)
+        @Html.Partial("_Edit", Model)
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index") |
+    @Html.ActionLink("Upate Items", "POItem")
+</div>

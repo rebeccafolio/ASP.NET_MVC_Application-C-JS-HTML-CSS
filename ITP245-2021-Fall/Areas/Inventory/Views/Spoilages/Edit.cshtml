@@ -1,0 +1,22 @@
+﻿@model ITP245_Model.Spoilage
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Inventory/Views/Shared/_Inventory.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    @Html.HiddenFor(model => model.SpoilageId)
+    @Html.Partial("_Edit", Model)   
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

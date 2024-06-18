@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ITP245_Model.Item>
+
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuantityOnHand)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RetailPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StandardCost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @if (!String.IsNullOrEmpty(item.ImageLocation))
+                {
+                    <img src="@Href(item.ImageLocation)" style="width:50px; height:50px; border:none" />
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantityOnHand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RetailPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StandardCost)
+            </td>
+            <td>               
+                @Html.ActionLink(item.Category.Name, "Details", "Categories", new { id = item.CategoryId }, null)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ItemId }, new { @class = "badge bg-primary" })
+                @Html.ActionLink("Details", "Details", new { id = item.ItemId }, new { @class = "badge bg-success" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.ItemId }, new { @class = "badge bg-danger" })                
+            </td>
+        </tr>
+    }
+
+</table>

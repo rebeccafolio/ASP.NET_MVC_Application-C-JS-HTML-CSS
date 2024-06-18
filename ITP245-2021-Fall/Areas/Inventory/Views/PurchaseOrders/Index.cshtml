@@ -1,0 +1,56 @@
+﻿@using ITP245_2021_Fall.HtmlHelpers
+@model IEnumerable<ITP245_Model.PurchaseOrder>
+
+@{
+    ViewBag.Title = "Purchase Orders";
+    Layout = "~/Areas/Inventory/Views/Shared/_Admin.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Add New Purchase Order", "Create", null, null, new { @class = "btn btn-primary btn-sm" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PurchaseOrderNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PoDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vendor.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+<tr>
+    <td>
+        @Html.DisplayFor(model => item.PurchaseOrderNumber)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PoDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Amount)
+    </td>
+    <td>
+        @Html.ActionLink(item.Vendor.Name, "Details", "Vendors", new { id = item.VendorId }, null)
+    </td>
+    <td>
+
+        @Html.ActionLink("Edit", "Edit", new { id = item.PurchaseOrderNumber }, new { @class = "badge bg-primary" })
+        @Html.ActionLink("Details", "Details", new { id = item.PurchaseOrderNumber }, new { @class = "badge bg-success" })
+        @Html.ActionLink("Delete", "Delete", new { id = item.PurchaseOrderNumber }, new { @class = "badge bg-danger" })
+        @Html.ActionLink("Update Items", "POItem", new { id = item.PurchaseOrderNumber }, new { @class = "badge bg-secondary" })
+    </td>
+</tr>
+}
+
+</table>

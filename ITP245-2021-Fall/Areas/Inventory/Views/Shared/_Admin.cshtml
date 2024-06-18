@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Inventory Items";
+    Layout = "~/Areas/Inventory/Views/Shared/_Inventory.cshtml";
+}
+
+<h3 class="heading">@ViewBag.Title</h3>
+<nav class="navbar navbar-expand-lg navbar-dark bg-info " id="navbarColor01">
+    <ul class="nav navbar-nav nav-link navbar-static-top">
+        <li>@Html.ActionLink(HttpUtility.HtmlDecode("&nbsp; Items &nbsp;|"), "Index", "Items", new { area = "Inventory" }, null)</li>
+        <li>@Html.ActionLink(HttpUtility.HtmlDecode("&nbsp; Categories &nbsp;|"), "Index", "Categories", new { area = "Inventory" }, null)</li>
+        <li>@Html.ActionLink(HttpUtility.HtmlDecode("&nbsp; Spoilages &nbsp;"), "Index", "Spoilages", new { area = "Inventory" }, null)</li>
+    </ul>
+</nav>
+
+
+
+<div class="container body-content">
+    @RenderBody()
+    <hr />
+</div>
+
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+
+}

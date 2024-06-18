@@ -1,0 +1,35 @@
+﻿@using ITP245_2021_Fall.HtmlHelpers;
+@model IEnumerable<ITP245_Model.Vendor>
+
+@{
+    ViewBag.Title = "Vendors";
+    Layout = "~/Areas/Inventory/Views/Shared/_Admin.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Add New Vendor", "Create", null, null, new { @class = "btn btn-primary btn-sm" })
+    &nbsp;&nbsp;&nbsp;<label class="filter">Filter By State</label>&nbsp;&nbsp;&nbsp;
+    @Html.DropDownList("State", null, htmlAttributes: new { @class = "filter", @onchange = "FillByState()" })
+</p>
+
+
+<div id="vendorContainer">
+    @Html.Partial("_Index", Model)
+</div>
+
+
+@section Scripts {
+    <script type="text/javascript">
+        function FillByState() {
+           alert("FillByState");
+            var stateid = $('#State').val();
+            //alert(stateid);
+            var container = $('#vendorContainer');
+            //alert(container);
+            container.load('@Url.Action("_IndexByState")?stateid=' + stateid)
+    </script>
+    <script src="~/Content/ITP245/EmailVendorScript.js"></script>
+
+}
